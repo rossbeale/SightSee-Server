@@ -7,6 +7,10 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+gem 'pg'
+
+gem 'postgres-pr'
+
 gem 'json'
 
 # Gems used only for assets and not required
@@ -37,3 +41,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+gem 'devise'
+
+gem 'cancan'
