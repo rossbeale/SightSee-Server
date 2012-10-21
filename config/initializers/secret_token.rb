@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-TourDroidServer::Application.config.secret_token = '4e22653349240820a6ead63c8a6a20937fe6f7ba0b7c4b078b11364866be833c8cbae584511a151fcd825dc00fd6cb5a0e8e188a2fe74c2830089131ef660040'
+TourdroidServer::Application.config.secret_token = '1fbd656dfeb409ef2e40b245bbb0f4c0feba82490551d0ed1a8b6f7559f884d347ff163d9d670e2c5ea8b61f465d20a4b1ba651945cc4e42ffd6896f9094247e'

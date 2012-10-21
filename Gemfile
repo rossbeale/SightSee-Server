@@ -11,8 +11,6 @@ gem 'pg'
 
 gem 'postgres-pr'
 
-gem 'json'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,8 +38,6 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+# gem 'debugger'
 
-gem 'devise'
-
-gem 'cancan'
+gem 'activeadmin'

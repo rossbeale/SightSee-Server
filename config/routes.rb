@@ -1,30 +1,4 @@
-TourDroidServer::Application.routes.draw do
-  resources :locations
-
-  get "home/index"
-  
-  devise_for :editors, skip: :registrations
-  devise_scope :editor do
-    resource :registration,
-      only: [:create, :edit, :update],
-      path: 'editors',
-      path_names: { },
-      controller: 'devise/registrations',
-      as: :editor_registration do
-      get :cancel
-    end
-  end
-  
-  scope "/admin" do
-    resources :editors
-  end
-  
-  namespace :admin do
-    # Directs /admin/products/* to Admin::ProductsController
-    # (app/controllers/admin/products_controller.rb)
-    resources :admin
-  end
-
+TourdroidServer::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -74,7 +48,7 @@ TourDroidServer::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
