@@ -20,16 +20,6 @@ ActiveAdmin.register Editor do
   filter :name
   filter :email
   
-  begin
-    if Editor.count < 2         
-      actions :all, :except => [:destroy]       
-    else
-      actions :all
-    end      
-  rescue
-    actions :all, :except => [:destroy]
-  end
-  
   index :download_links => false do       
     column :name                     
     column :email                     

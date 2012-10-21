@@ -18,7 +18,7 @@ class Editor < ActiveRecord::Base
   before_destroy :raise_if_last
   
   def raise_if_last
-    if AdminUser.count < 2
+    if Editor.count == 1
       raise "Can't delete last admin user"
     end
   end
