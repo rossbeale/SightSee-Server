@@ -1,10 +1,22 @@
 ActiveAdmin.register Editor do  
-  
+
+  scope :editors, :default => true
+
   menu :if => proc{ current_editor.is_super? }
   
   controller do
     
+    before_filter :set_current_editor
+    
     before_filter :require_super
+    
+    def set_admin_locale 
+      I18n.locale = :en_extended
+    end 
+    
+    def set_current_editor
+      Editor.current = current_editor
+    end
       
     def require_super
       if !current_editor.is_super?

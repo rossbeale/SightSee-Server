@@ -60,5 +60,12 @@ module TourdroidServer
     config.assets.version = '1.0'
     
     config.assets.initialize_on_precompile = false
+    
+    config.after_initialize do
+          # Add load paths straight to I18n, so engines and application can overwrite it.
+          require 'active_support/i18n'
+          I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    end 
+    
   end
 end
