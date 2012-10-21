@@ -1,15 +1,34 @@
 ActiveAdmin.register Editor do  
   
+  menu :if => proc{ current_editor.is_super? }
+  
+  controller do
+    
+    before_filter :require_super
+      
+    def require_super
+      if !current_editor.is_super?
+        redirect_to edit_dashboard_path
+      end
+    end
+    
+  end
+  
+  config.sort_order = "name_desc"
+  config.paginate = false
+  
+  filter :name
+  filter :email
+  
   if Editor.count < 2         
     actions :all, :except => [:destroy]       
   else
     actions :all
-  end           
+  end         
   
-  index do       
+  index :download_links => false do       
     column :name                     
     column :email                     
-    column :current_sign_in_at        
     column :last_sign_in_at           
     column :sign_in_count  
     column :is_super  
@@ -27,14 +46,13 @@ ActiveAdmin.register Editor do
                      :last_sign_in_ip, 
                      :created_at, 
                      :updated_at
-  end                           
-
-  filter :email                       
+  end                                                
 
   form do |f|                         
     f.inputs "Editor Details" do       
       f.input :name
-      f.input :email                  
+      f.input :email 
+      f.input :password                 
       f.input :is_super, :label => "Super Editor"  
     end                               
     f.buttons                         
