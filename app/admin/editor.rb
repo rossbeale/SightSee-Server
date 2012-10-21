@@ -1,9 +1,5 @@
 ActiveAdmin.register Editor do  
 
-  scope :editors, :default => true
-
-  menu :if => proc{ current_editor.is_super? }
-  
   controller do
     
     before_filter :set_current_editor
@@ -25,6 +21,10 @@ ActiveAdmin.register Editor do
     end
     
   end
+
+  scope :editors, :default => true
+
+  menu :if => proc{ current_editor.is_super? }
   
   config.sort_order = "name_desc"
   config.paginate = false
