@@ -51,8 +51,7 @@ ActiveAdmin.register Editor do
   form do |f|                         
     f.inputs "Editor Details" do       
       f.input :name
-      f.input :email 
-      f.input :password                 
+      f.input :email                
       f.input :is_super, :label => "Super Editor"  
     end                               
     f.buttons                         
