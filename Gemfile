@@ -45,3 +45,5 @@ gem 'jquery-rails'
 gem 'thin'
 
 gem 'activeadmin'
+
+gem 'newrelic_rpm'
