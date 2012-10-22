@@ -300,8 +300,8 @@ en_extended:
         other: "entries"
     any: "Any"
     blank_slate:
-      content: "There are no %{resource_name} yet."
-      link: "Create one"
+      content: "There are no %{resource_name} (other than you) yet."
+      link: "Add one"
     batch_actions:
       button_label: "Batch Actions"
       delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."

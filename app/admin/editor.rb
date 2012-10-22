@@ -18,11 +18,6 @@ ActiveAdmin.register Editor do
       end
     end
     
-    # custom locale for this page
-    def set_admin_locale 
-      I18n.locale = :en_extended
-    end 
-      
     # we can only manage editors if we are a supereditor
     before_filter :require_super
     
