@@ -7,9 +7,23 @@ ActiveAdmin.register Editor, as: 'Account' do
     def redirect_to_edit
       redirect_to edit_edit_account_path current_editor
     end
+    
+    # if not current users path, lets redirect to their own
+    def is_editors_account
+      puts params[:id]
+      puts current_editor.id
+      if params[:id].to_i != current_editor.id.to_i
+        puts "REDIRECT"
+        redirect_to_edit
+      end
+    end
 
     alias_method :index, :redirect_to_edit
     alias_method :show,  :redirect_to_edit
+    
+    # we can only manage our own account
+    before_filter :is_editors_account
+    
   end
 
   form do |f|
