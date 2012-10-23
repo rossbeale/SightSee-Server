@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021111132) do
+ActiveRecord::Schema.define(:version => 20121023074107) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,5 +48,19 @@ ActiveRecord::Schema.define(:version => 20121021111132) do
   add_index "editors", ["email"], :name => "index_editors_on_email", :unique => true
   add_index "editors", ["name"], :name => "index_editors_on_name"
   add_index "editors", ["reset_password_token"], :name => "index_editors_on_reset_password_token", :unique => true
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "lat",         :precision => 15, :scale => 10
+    t.decimal  "lng",         :precision => 15, :scale => 10
+    t.integer  "editor_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  add_index "locations", ["lat", "lng"], :name => "index_locations_on_lat_and_lng"
+  add_index "locations", ["lat"], :name => "index_locations_on_lat"
+  add_index "locations", ["lng"], :name => "index_locations_on_lng"
 
 end

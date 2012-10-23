@@ -46,4 +46,8 @@ gem 'thin'
 
 gem 'activeadmin'
 
+gem 'geokit'
+
+gem 'geokit-rails3'
+
 gem 'newrelic_rpm'

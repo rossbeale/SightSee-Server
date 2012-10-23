@@ -10,19 +10,8 @@ ActiveAdmin.register Editor do
       end
     end
     
-    # sets editor instance of the current editor (so its accessible in the Editor model)
-    def set_current_editor
-      if !Editor.current
-        Editor.current = current_editor
-        redirect_to edit_editors_path
-      end
-    end
-    
     # we can only manage editors if we are a supereditor
     before_filter :require_super
-    
-    # we set the editor to hide it from the list we are about to fetch
-    before_filter :set_current_editor
     
   end
 
