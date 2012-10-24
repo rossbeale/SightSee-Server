@@ -14,6 +14,10 @@ class Review < ActiveRecord::Base
     where('review_comment != \'\' OR review_comment != NULL')
   end
   
+  def self.recent(limit)
+    find(:all, :order => "id desc", :limit => limit).reverse
+  end
+  
   before_save :check_score
   
   def as_json(options={})
