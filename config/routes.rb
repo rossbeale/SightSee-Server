@@ -18,6 +18,8 @@ TourdroidServer::Application.routes.draw do
   #   resources :products
   
   resources :locations
+  
+  root :to => redirect("/edit")
 
   # Sample resource route with options:
   #   resources :products do
