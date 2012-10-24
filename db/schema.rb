@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023074107) do
+ActiveRecord::Schema.define(:version => 20121024122545) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(:version => 20121023074107) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories_locations", :id => false, :force => true do |t|
+    t.integer "location_id"
+    t.integer "category_id"
+  end
+
+  add_index "categories_locations", ["category_id", "location_id"], :name => "index_categories_locations_on_category_id_and_location_id"
+  add_index "categories_locations", ["location_id", "category_id"], :name => "index_categories_locations_on_location_id_and_category_id"
 
   create_table "editors", :force => true do |t|
     t.string   "name",                   :default => "",    :null => false

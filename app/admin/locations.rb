@@ -6,6 +6,15 @@ ActiveAdmin.register Location do
       I18n.locale = :en_locations
     end 
     
+    def check_categories
+      if Category.count == 0
+        flash[:failure] = "To add locations, you must have at least one category"
+        redirect_to edit_categories_path
+      end
+    end
+    
+    before_filter :check_categories
+    
   end 
   
   menu :priority => 2
@@ -14,6 +23,7 @@ ActiveAdmin.register Location do
   
   # filters
   filter :name
+  filter :categories_id, :as => :check_boxes, :collection => proc { Category.with_locations }
   
   # order by name, forget about pagination
   config.sort_order = "name_desc"
@@ -24,6 +34,9 @@ ActiveAdmin.register Location do
     column :description                     
     column :lat           
     column :lng  
+    column "Categories" do |location|
+      location.categories.map { |p| p.name }.join('<br />').html_safe
+    end
     default_actions 
   end      
   
@@ -41,20 +54,24 @@ ActiveAdmin.register Location do
         row "Map" do
           image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=16&size=500x300&sensor=false")
         end
+        row "Categories" do
+          location.categories.map { |p| p.name }.join('<br />').html_safe
+        end
         row :created_at
         row :updated_at
       end
-    end                               
-
-  # new/edit form
-  form do |f|                         
-    f.inputs "Location Details" do       
-      f.input :name
-      f.input :description                
-      f.input :lat, :label => "Latitude"
-      f.input :lng, :label => "Longitude"  
-    end                               
-    f.buttons                         
-  end  
+    end   
+    
+    # new/edit form
+    form do |f|                         
+      f.inputs "Location Details" do
+        f.input :name
+        f.input :description                
+        f.input :lat, :label => "Latitude"
+        f.input :lng, :label => "Longitude"
+        f.input :categories
+      end                               
+      f.buttons                         
+    end  
   
 end
