@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
   
   belongs_to :editor
+  has_many :reviews
   has_and_belongs_to_many :categories
   
   acts_as_mappable  :default_units => :miles,
@@ -27,9 +28,13 @@ class Location < ActiveRecord::Base
     distance_from(@origin, :units=>:miles)
   end
   
+  def review_score
+    reviews.average(:review_score)
+  end
+  
   def as_json(options={})
     super((options || { }).merge({
-        :methods => [:distance, :categories],
+        :methods => [:distance, :categories, :reviews],
         :except => [:editor_id, :created_at, :updated_at]
     }))
   end

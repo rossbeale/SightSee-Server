@@ -10,6 +10,10 @@ ActiveAdmin.register Editor do
       end
     end
     
+    def set_admin_locale 
+      I18n.locale = :en_editors
+    end 
+    
     # we can only manage editors if we are a supereditor
     before_filter :require_super
     
@@ -20,7 +24,7 @@ ActiveAdmin.register Editor do
   end
 
   # hide from menu if you are not a supereditor
-  menu :if => proc{ current_editor.is_super? }
+  menu :if => proc{ current_editor.is_super? }, :priority => 5
   
   # order by name, forget about pagination
   config.sort_order = "name_desc"

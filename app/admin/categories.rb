@@ -1,16 +1,8 @@
 ActiveAdmin.register Category do
   
-  controller do
-    
-    def set_admin_locale 
-      I18n.locale = :en_locations
-    end 
-    
-  end 
+  menu :priority => 3
   
   filter :name
-  
-  actions :all, :except => [:show]
   
   # order by name, forget about pagination
   config.sort_order = "name_desc"
@@ -20,6 +12,11 @@ ActiveAdmin.register Category do
     column :name
     column :created_at
     column :updated_at
+    if current_editor.is_super?
+      column "Linked Locations" do |category|
+        category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('<br />').html_safe
+      end
+    end
     default_actions 
   end      
   
@@ -29,6 +26,11 @@ ActiveAdmin.register Category do
       row :name
       row :created_at
       row :updated_at
+      if current_editor.is_super?
+        row "Linked Locations" do |category|
+          category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('<br />').html_safe
+        end
+      end
     end
   end   
     

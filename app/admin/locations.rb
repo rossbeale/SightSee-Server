@@ -2,10 +2,6 @@ ActiveAdmin.register Location do
   
   controller do
     
-    def set_admin_locale 
-      I18n.locale = :en_locations
-    end 
-    
     def check_categories
       if Category.count == 0
         flash[:failure] = "To add locations, you must have at least one category"
@@ -35,7 +31,10 @@ ActiveAdmin.register Location do
     column :lat           
     column :lng  
     column "Categories" do |location|
-      location.categories.map { |p| p.name }.join('<br />').html_safe
+      location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('<br />').html_safe
+    end
+    column "Average Review Score" do |location|
+      location.review_score
     end
     default_actions 
   end      
@@ -55,7 +54,28 @@ ActiveAdmin.register Location do
           image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=16&size=500x300&sensor=false")
         end
         row "Categories" do
-          location.categories.map { |p| p.name }.join('<br />').html_safe
+          location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('<br />').html_safe
+        end
+        row "Reviews" do |location|
+          location.reviews.count
+        end
+        row "Average Review Score" do |location|
+          if location.reviews.count > 0
+            location.review_score
+          else
+            "Not yet reviewed"
+          end
+        end
+        row "Reviews" do |location|
+          if location.reviews.count > 0
+            if location.reviews.with_comments.count > 0
+              location.reviews.with_comments.map { |review| link_to "\"#{review.review_comment}\"", edit_review_path(review) }.join('<br />').html_safe
+            else
+              "No reviews with comments"
+            end
+          else
+            "Not yet reviewed"
+          end
         end
         row :created_at
         row :updated_at

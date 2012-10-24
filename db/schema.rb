@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024122545) do
+ActiveRecord::Schema.define(:version => 20121024132838) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -76,5 +76,14 @@ ActiveRecord::Schema.define(:version => 20121024122545) do
   add_index "locations", ["lat", "lng"], :name => "index_locations_on_lat_and_lng"
   add_index "locations", ["lat"], :name => "index_locations_on_lat"
   add_index "locations", ["lng"], :name => "index_locations_on_lng"
+
+  create_table "reviews", :force => true do |t|
+    t.string   "reviewer_name"
+    t.text     "review_comment"
+    t.float    "review_score"
+    t.integer  "location_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end
