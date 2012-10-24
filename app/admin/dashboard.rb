@@ -26,8 +26,12 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
       column do
-        panel "Recent Locations" do
-          para "Recently added locations will appear here."
+        panel "Recently Added Locations" do
+          table_for Location.recent(10) do
+            column("Name")   { |location| location.name } 
+            column("Description"){ |location| location.description }
+            column("Map") { |location| image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=16&size=240x80&sensor=false") }
+          end
         end
       end
       

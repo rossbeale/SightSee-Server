@@ -1,4 +1,4 @@
-en_extended:
+en_locations:
   errors:
     messages:
       expired: "has expired, please request a new one"

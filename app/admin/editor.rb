@@ -10,19 +10,12 @@ ActiveAdmin.register Editor do
       end
     end
     
-    # sets editor instance of the current editor (so its accessible in the Editor model)
-    def set_current_editor
-      if !Editor.current
-        Editor.current = current_editor
-        redirect_to edit_editors_path
-      end
-    end
+    def set_admin_locale 
+      I18n.locale = :en_editors
+    end 
     
     # we can only manage editors if we are a supereditor
     before_filter :require_super
-    
-    # we set the editor to hide it from the list we are about to fetch
-    before_filter :set_current_editor
     
   end
 
@@ -31,7 +24,7 @@ ActiveAdmin.register Editor do
   end
 
   # hide from menu if you are not a supereditor
-  menu :if => proc{ current_editor.is_super? }
+  menu :if => proc{ current_editor.is_super? }, :priority => 5
   
   # order by name, forget about pagination
   config.sort_order = "name_desc"

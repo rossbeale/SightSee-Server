@@ -1,5 +1,7 @@
 class Editor < ActiveRecord::Base
   
+  has_many :locations
+  
   # getter and setter for current editor member
   def self.current
     Thread.current[:editor]
@@ -28,6 +30,14 @@ class Editor < ActiveRecord::Base
   def raise_if_last_super
     if Editor.where(:is_super => true).count == 1
       raise "Cannot delete last super editor"
+    end
+  end
+  
+  def my_locations
+    if Editor.current.is_super
+      Location.unscoped
+    else
+      Location.where('editor_id = ?', Editor.current)
     end
   end
   
