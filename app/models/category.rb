@@ -1,4 +1,8 @@
 class Category < ActiveRecord::Base
+  
+  validates_uniqueness_of :name, :case_sensitive => false, :message => "already exists"
+  validates_presence_of :name
+  
   has_and_belongs_to_many :locations
   
   attr_accessible :name

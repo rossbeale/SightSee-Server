@@ -34,7 +34,11 @@ ActiveAdmin.register Location do
       location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('<br />').html_safe
     end
     column "Average Review Score" do |location|
-      location.review_score
+      if location.reviews.count > 0
+        location.review_score
+      else
+        "Not Yet Reviewed"
+      end
     end
     default_actions 
   end      
@@ -84,14 +88,14 @@ ActiveAdmin.register Location do
     
     # new/edit form
     form do |f|                         
-      f.inputs "Location Details" do
+      f.inputs "Location Details", :'data-geousable' => 'yup' do
         f.input :name
-        f.input :description                
-        f.input :lat, :label => "Latitude"
-        f.input :lng, :label => "Longitude"
+        f.input :description      
+        f.input :lat, :label => "Latitude", :input_html => { :class => 'lat' }
+        f.input :lng, :label => "Longitude", :input_html => { :class => 'lng' }
         f.input :categories
       end                               
-      f.buttons                         
+      f.actions                         
     end  
   
 end
