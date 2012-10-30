@@ -6,7 +6,6 @@ class LocationsController < ApplicationController
       @origin = [params[:lat], params[:lng]]
       @locations = Location.all
       @locations.sort_by_distance_from(@origin)
-      Location.origin = @origin
       render json: @locations.as_json(:usercon => params)
     else
       head :bad_request

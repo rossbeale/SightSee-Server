@@ -14,20 +14,8 @@ class Location < ActiveRecord::Base
                      
   attr_accessible :name, :description, :lat, :lng, :category_ids
   
-  def self.origin
-    @origin
-  end
-
-  def self.origin=(value)
-    @origin = value
-  end
-  
   def self.recent(limit)
     find(:all, :order => "id desc", :limit => limit).reverse
-  end
-  
-  def distance
-    distance_from(@origin, :units=>:miles)
   end
   
   def review_score
@@ -38,9 +26,13 @@ class Location < ActiveRecord::Base
     reviews.average(:review_score)
   end
   
+  def distance_formatted
+      distance.round(2)
+  end
+  
   def as_json(options={})
     super((options || { }).merge({
-        :methods => [:distance, :categories, :reviews],
+        :methods => [:distance_formatted, :categories, :reviews],
         :except => [:editor_id, :created_at, :updated_at]
     }))
   end
