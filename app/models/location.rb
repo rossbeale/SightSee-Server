@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   
-  validates_presence_of :name, :lat, :lng, :categories
+  validates_presence_of :name, :lat, :lng, :categories, :editor
   
   belongs_to :editor
   has_many :reviews
@@ -12,17 +12,13 @@ class Location < ActiveRecord::Base
                     :lat_column_name => :lat,
                     :lng_column_name => :lng
                      
-  attr_accessible :name, :description, :lat, :lng, :category_ids
+  attr_accessible :name, :description, :lat, :lng, :category_ids, :editor_id
   
   def self.recent(limit)
-    find(:all, :order => "id desc", :limit => limit).reverse
+    find(:all, :order => "id asc", :limit => limit).reverse
   end
   
   def review_score
-    reviews.average(:review_score)
-  end
-  
-  def validation
     reviews.average(:review_score)
   end
   
@@ -44,6 +40,15 @@ class Location < ActiveRecord::Base
     end
   end
   
+  def check_editor
+    if !Editor.current.is_super?
+      if editor_id != Editor.current.id
+        raise "Wrong editor"
+      end
+    end
+  end
+  
   before_save :check_location
+  before_save :check_editor
     
 end

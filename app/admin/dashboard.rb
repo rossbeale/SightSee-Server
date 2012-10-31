@@ -23,7 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
             table_for @locations do
               column("Name")   { |location| location.name } 
               column("Description"){ |location| location.description }
-              column("Map") { |location| image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=16&size=240x80&sensor=false") }
+              column("Map") { |location| image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=15&size=100x80&sensor=false") }
             end
           else
             para "No locations have yet been added."

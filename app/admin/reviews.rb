@@ -46,7 +46,7 @@ ActiveAdmin.register Review do
       f.input :review_comment
       f.input :review_score
     end                               
-    f.buttons                         
+    f.actions                         
   end 
   
 end

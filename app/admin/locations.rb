@@ -88,11 +88,12 @@ ActiveAdmin.register Location do
     
     # new/edit form
     form do |f|                         
-      f.inputs "Location Details", :'data-geousable' => 'yup' do
+      f.inputs "Location Details" do
+        f.input :editor, :collection => Editor.editors, :include_blank => false
         f.input :name
         f.input :description      
-        f.input :lat, :label => "Latitude", :input_html => { :class => 'lat' }
-        f.input :lng, :label => "Longitude", :input_html => { :class => 'lng' }
+        f.input :lat, :as => :string, :label => "Latitude", :input_html => { :class => 'lat' }
+        f.input :lng, :as => :string, :label => "Longitude", :input_html => { :class => 'lng' }
         f.input :categories
       end                               
       f.actions                         

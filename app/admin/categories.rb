@@ -10,8 +10,6 @@ ActiveAdmin.register Category do
   # index table (no download links)
   index do       
     column :name
-    column :created_at
-    column :updated_at
     if current_editor.is_super?
       column "Linked Locations" do |category|
         category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('<br />').html_safe
@@ -39,7 +37,7 @@ ActiveAdmin.register Category do
     f.inputs "Category Details" do
       f.input :name
     end                               
-    f.buttons                         
+    f.actions                         
   end 
   
 end

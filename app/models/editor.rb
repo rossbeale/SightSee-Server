@@ -41,6 +41,27 @@ class Editor < ActiveRecord::Base
     end
   end
   
+  def self.editors
+    if Editor.current.is_super
+      
+      categories_with_locations = []
+      
+      categories = Editor.where('id = ?', Editor.current)
+      categories.each do |category|
+          categories_with_locations << category
+      end
+      
+      categories = Editor.where('id != ?', Editor.current)
+      categories.each do |category|
+          categories_with_locations << category
+      end
+      categories_with_locations
+      
+    else
+      Editor.where('id = ?', Editor.current)
+    end
+  end
+  
   # Devise setup
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable

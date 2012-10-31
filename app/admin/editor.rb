@@ -65,7 +65,7 @@ ActiveAdmin.register Editor do
       f.input :email                
       f.input :is_super, :label => "Super Editor"  
     end                               
-    f.buttons                         
+    f.actions                         
   end  
                                 
 end

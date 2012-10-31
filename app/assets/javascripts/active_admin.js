@@ -14,16 +14,31 @@ jQuery(document).ready(function ($) {
 	
  	if (document.getElementById('location_lat').value && document.getElementById('location_lng').value) {
 		location = new google.maps.LatLng(document.getElementById('location_lat').value, document.getElementById('location_lng').value);
+		setMarker();
+	}else if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+			setMarker();
+		}, function() {
+			location = new google.maps.LatLng(51.458809, -0.919594);
+			setMarker();
+		});
+	}else{
+		location = new google.maps.LatLng(51.458809, -0.919594);
+		setMarker();
+	}
+	
+	function setMarker(){
+		document.getElementById('location_lat').value = location.lat();
+		document.getElementById('location_lng').value = location.lng();
 		marker = new google.maps.Marker({
 			 position: location,
 			 title: "Drag Me!",
 			 draggable: true
 		});
 		marker.setMap(map);
-	}else{
-		location = new google.maps.LatLng(51.458809, -0.919594);
+		map.setCenter(location);
 	}
-	map.setCenter(location);
 	
 	$('#location_lat').on('change', function() {
 		if(marker) marker.setMap(null);

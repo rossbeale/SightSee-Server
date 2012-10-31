@@ -15,7 +15,7 @@ class Review < ActiveRecord::Base
   end
   
   def self.recent(limit)
-    find(:all, :order => "id desc", :limit => limit).reverse
+    find(:all, :order => "id asc", :limit => limit).reverse
   end
   
   before_save :check_score
