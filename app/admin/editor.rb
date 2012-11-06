@@ -35,7 +35,8 @@ ActiveAdmin.register Editor do
   filter :email
   
   # index table (no download links)
-  index :download_links => false do       
+  index :download_links => false do     
+    selectable_column  
     column :name                     
     column :email                     
     column :last_sign_in_at           

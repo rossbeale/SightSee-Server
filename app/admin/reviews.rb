@@ -14,7 +14,8 @@ ActiveAdmin.register Review do
   #actions :all, :except => [:new]
   
   # index table (no download links)
-  index do       
+  index do 
+    selectable_column      
     column :review_score
     column :review_comment
     column :reviewer_name

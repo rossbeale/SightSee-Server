@@ -26,6 +26,7 @@ ActiveAdmin.register Location do
   
   # index table (no download links)
   index do       
+    selectable_column
     column :name                     
     column :description                     
     column :lat           

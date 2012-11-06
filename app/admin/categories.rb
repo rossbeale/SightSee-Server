@@ -8,7 +8,8 @@ ActiveAdmin.register Category do
   config.sort_order = "name_desc"
   
   # index table (no download links)
-  index do       
+  index do    
+    selectable_column   
     column :name
     if current_editor.is_super?
       column "Linked Locations" do |category|
