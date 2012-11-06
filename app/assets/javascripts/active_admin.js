@@ -38,6 +38,7 @@ jQuery(document).ready(function ($) {
 		});
 		marker.setMap(map);
 		map.setCenter(location);
+		setListener();
 	}
 	
 	$('#location_lat').on('change', function() {
@@ -51,6 +52,7 @@ jQuery(document).ready(function ($) {
 			});
 			marker.setMap(map);
 			map.setCenter(location);
+			setListener();
 		}
 	});
 	
@@ -65,13 +67,16 @@ jQuery(document).ready(function ($) {
 			});
 			marker.setMap(map);
 			map.setCenter(location);
+			setListener();
 		}
 	});
 	
-	google.maps.event.addListener(marker, 'dragend', function() {
-	    location = marker.getPosition();
-		document.getElementById('location_lat').value = location.lat();
-		document.getElementById('location_lng').value = location.lng();
-	  });
+	function setListener() {
+		google.maps.event.addListener(marker, 'dragend', function() {
+		    location = marker.getPosition();
+			document.getElementById('location_lat').value = location.lat();
+			document.getElementById('location_lng').value = location.lng();
+		  });
+  	}
 					
 });
