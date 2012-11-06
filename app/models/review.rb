@@ -20,6 +20,12 @@ class Review < ActiveRecord::Base
   
   before_save :check_score
   
+  def id_as_json()
+    as_json({
+        :only => [:id]
+    })
+  end
+  
   def as_json(options={})
     super((options || { }).merge({
         :except => [:updated_at, :location_id]

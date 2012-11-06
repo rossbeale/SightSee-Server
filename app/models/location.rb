@@ -19,7 +19,7 @@ class Location < ActiveRecord::Base
   end
   
   def review_score
-    reviews.average(:review_score)
+    reviews.average(:review_score).round(1)
   end
   
   def distance_formatted

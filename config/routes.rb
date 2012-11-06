@@ -17,7 +17,17 @@ TourdroidServer::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   
-  resources :locations
+  resources :locations do
+    member do
+      get 'locations'
+    end
+  end
+  
+  resources :reviews do
+    member do
+      post 'reviews'
+    end
+  end
   
   root :to => redirect("/edit")
 
