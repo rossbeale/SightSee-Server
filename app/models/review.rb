@@ -18,6 +18,10 @@ class Review < ActiveRecord::Base
     find(:all, :order => "id asc", :limit => limit).reverse
   end
   
+  def created_date
+    created_at.to_time.to_i
+  end
+  
   before_save :check_score
   
   def id_as_json()
@@ -28,6 +32,7 @@ class Review < ActiveRecord::Base
   
   def as_json(options={})
     super((options || { }).merge({
+        :methods => [:created_date],
         :except => [:updated_at, :location_id]
     }))
   end

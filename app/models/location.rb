@@ -35,7 +35,7 @@ class Location < ActiveRecord::Base
   
   # exception if we try to delete the last editor
   def check_location
-    if lat > 90 || lat < -90 || lng > 180 || lat < -180
+    if lat > 90 || lat < -90 || lng > 180 || lng < -180
       raise "Incorrect co-ordinates"
     end
   end
