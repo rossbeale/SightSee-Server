@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024132838) do
+ActiveRecord::Schema.define(:version => 20121120092318) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(:version => 20121024132838) do
 
   add_index "categories_locations", ["category_id", "location_id"], :name => "index_categories_locations_on_category_id_and_location_id"
   add_index "categories_locations", ["location_id", "category_id"], :name => "index_categories_locations_on_location_id_and_category_id"
+
+  create_table "configurations", :force => true do |t|
+    t.string   "var",        :null => false
+    t.text     "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "configurations", ["var"], :name => "index_configurations_on_var", :unique => true
 
   create_table "editors", :force => true do |t|
     t.string   "name",                   :default => "",    :null => false
@@ -85,5 +94,14 @@ ActiveRecord::Schema.define(:version => 20121024132838) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  create_table "settings", :force => true do |t|
+    t.string   "var",        :null => false
+    t.text     "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "settings", ["var"], :name => "index_settings_on_var", :unique => true
 
 end

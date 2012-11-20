@@ -1,5 +1,4 @@
 class Location < ActiveRecord::Base
-  
   validates_presence_of :name, :lat, :lng, :categories, :editor
   
   belongs_to :editor
