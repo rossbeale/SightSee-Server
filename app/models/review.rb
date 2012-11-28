@@ -1,7 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :location
   
-  attr_accessible :location_id, :reviewer_name, :review_comment, :review_score
+  attr_accessible :location_id, :reviewer_name, :review_comment, :review_score, :uid
   
   # exception if we try to delete the last editor
   def check_score
@@ -30,9 +30,13 @@ class Review < ActiveRecord::Base
     })
   end
   
+  def response
+    "success"
+  end
+  
   def as_json(options={})
     super((options || { }).merge({
-        :methods => [:created_date],
+        :methods => [:response, :created_date],
         :except => [:updated_at, :location_id]
     }))
   end
