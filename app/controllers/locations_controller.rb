@@ -5,9 +5,10 @@ class LocationsController < ApplicationController
     if params[:lat] && params[:lng] && params[:uid] && params[:lat].length > 0 && params[:lng].length > 0 && params[:uid].length > 0
       @origin = [params[:lat], params[:lng]]
       @locations = Location.all.sort_by_distance_from(@origin).take(Setting.get_limit)
-      if Setting.get_encrypt
+      if Setting.get_encrypt && !params[:no_encrypt]
         d = OpenSSL::Cipher.new("aes-256-cbc")
         @secret = OpenSSL::PKCS5.pbkdf2_hmac_sha1(params[:uid], "tourdroid", 1024, d.key_len)
+        puts @secret
         cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
         iv = cipher.random_iv
         cipher.encrypt
