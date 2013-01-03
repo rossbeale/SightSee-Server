@@ -1,6 +1,10 @@
 class Setting < ActiveRecord::Base
   attr_accessible :var, :value
   
+  def display_name
+    var.capitalize
+  end
+    
   # exception if we try to delete the last editor
   def check_value
     if var == "limit" && value.to_i < 1

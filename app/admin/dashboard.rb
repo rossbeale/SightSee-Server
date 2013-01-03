@@ -19,13 +19,13 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       
       column do
-        panel "Recently Added Locations" do
+        panel "Recent Locations" do
           @locations = Location.recent(10)
           if @locations.count > 0
             table_for @locations do
-              column("Name")   { |location| location.name } 
-              column("Description"){ |location| location.description }
-              column("Map") { |location| image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=15&size=100x80&sensor=false") }
+              column("Name")        { |location| location.name } 
+              column("Description") { |location| location.description }
+              column("Score")       { |location| span :class => location.review_score_dashboard_class do location.review_score_string(false) end }
             end
           else
             para "No locations have yet been added."
@@ -34,12 +34,13 @@ ActiveAdmin.register_page "Dashboard" do
       end
       
       column do
-        panel "Recently Added Reviews" do
+        panel "Recent Reviews" do
           @reviews = Review.recent(10)
           if @reviews.count > 0
             table_for @reviews do
-              column("Location Name")   { |review| review.location.name } 
-              column("Score"){ |review| review.review_score }
+              column("Location")   { |review| review.location.name } 
+              column("Comment")   { |review| review.review_comment } 
+              column("Score"){ |review| span :class => review.review_score_dashboard_class do review.review_score end }
              end
           else
             para "No reviews have yet been added."

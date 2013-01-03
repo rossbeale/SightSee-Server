@@ -3,6 +3,10 @@ class Review < ActiveRecord::Base
   
   attr_accessible :location_id, :reviewer_name, :review_comment, :review_score, :uid
   
+  def display_name
+    "Review for \"" + location.name + "\""
+  end
+    
   # exception if we try to delete the last editor
   def check_score
     if review_score > 5
@@ -16,6 +20,14 @@ class Review < ActiveRecord::Base
   
   def self.recent(limit)
     find(:all, :order => "id asc", :limit => limit).reverse
+  end
+  
+  def review_score_dashboard_class
+    if review_score < 3
+      "status_tag red"
+    else
+      "status_tag green"
+    end
   end
   
   def created_date

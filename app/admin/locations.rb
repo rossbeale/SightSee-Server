@@ -35,11 +35,7 @@ ActiveAdmin.register Location do
       location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('<br />').html_safe
     end
     column "Average Review Score" do |location|
-      if location.reviews.count > 0
-        location.review_score
-      else
-        "Not Yet Reviewed"
-      end
+      location.review_score_string(true)
     end
     default_actions 
   end      
@@ -65,11 +61,7 @@ ActiveAdmin.register Location do
           location.reviews.count
         end
         row "Average Review Score" do |location|
-          if location.reviews.count > 0
-            location.review_score
-          else
-            "Not yet reviewed"
-          end
+          location.review_score_string(true)
         end
         row "Reviews" do |location|
           if location.reviews.count > 0

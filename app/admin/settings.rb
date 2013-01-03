@@ -10,7 +10,7 @@ ActiveAdmin.register Setting, as: 'Setting' do
   config.batch_actions = false
   
   controller do
-    
+
     # if not supereditor, lets redirect to dashboard
     def require_super
       if !current_editor.is_super?

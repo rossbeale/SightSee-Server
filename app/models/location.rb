@@ -21,6 +21,30 @@ class Location < ActiveRecord::Base
     reviews.average(:review_score).round(1)
   end
   
+  def review_score_string(long)
+    if reviews.count > 0
+      review_score.to_s
+    else
+      if long
+        "Not Yet Reviewed"
+      else
+        "N/A"
+      end
+    end
+  end
+  
+  def review_score_dashboard_class
+    if reviews.count > 0
+      if review_score < 3
+        "status_tag red"
+      else
+        "status_tag green"
+      end
+    else
+      "status_tag orange"
+    end
+  end
+  
   def distance_formatted
       distance.round(2)
   end

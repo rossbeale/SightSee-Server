@@ -1,7 +1,7 @@
 class Editor < ActiveRecord::Base
   
   has_many :locations
-  
+    
   # getter and setter for current editor member
   def self.current
     Thread.current[:editor]
