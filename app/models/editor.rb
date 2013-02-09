@@ -27,12 +27,6 @@ class Editor < ActiveRecord::Base
     end
   end
   
-  def raise_if_last_super
-    if Editor.where(:is_super => true).count == 1
-      raise "Cannot delete last super editor"
-    end
-  end
-  
   def my_locations
     if Editor.current.is_super
       Location.unscoped
@@ -70,7 +64,6 @@ class Editor < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :is_super
   
   before_destroy :raise_if_last
-  before_destroy :raise_if_last_super
   
   # send instructions to new user
   after_create { |editor| editor.send_reset_password_instructions }
