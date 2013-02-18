@@ -11,8 +11,6 @@ ActiveAdmin.register Review do
   filter :review_score
   filter :created_at
   
-  actions :all, :except => [:new]
-  
   # index table (no download links)
   index do 
     selectable_column      
