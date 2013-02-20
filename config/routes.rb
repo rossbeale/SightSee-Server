@@ -1,4 +1,4 @@
-TourdroidServer::Application.routes.draw do
+SightSeeServer::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :editors, ActiveAdmin::Devise.config

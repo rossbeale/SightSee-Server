@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TourdroidServer::Application.load_tasks
+SightSeeServer::Application.load_tasks

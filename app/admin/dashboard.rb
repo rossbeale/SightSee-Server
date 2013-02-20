@@ -8,9 +8,9 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Info" do
           if current_editor.is_super?
-            para "Welcome to TourDroid Server - here you can manage locations, reviews and other editors."
+            para "Welcome to SightSee Server - here you can manage locations, reviews and other editors."
           else
-            para "Welcome to TourDroid Server - here you can manage locations and reviews."
+            para "Welcome to SightSee Server - here you can manage locations and reviews."
           end
         end
       end

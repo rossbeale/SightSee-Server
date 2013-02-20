@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: tourdroid
+  database: sightsee
   host: localhost
 
 # Warning: The database defined as "test" will be erased and

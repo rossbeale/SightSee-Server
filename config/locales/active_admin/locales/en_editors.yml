@@ -51,7 +51,7 @@ en_editors:
       confirmation_instructions:
         subject: 'Confirmation instructions'
       reset_password_instructions:
-        subject: 'TourDroid Server password instructions'
+        subject: 'SightSee Server password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'
   date:

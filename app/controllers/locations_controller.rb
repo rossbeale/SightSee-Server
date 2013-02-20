@@ -1,11 +1,11 @@
 class LocationsController < ApplicationController
   
-  # GET /locations (XML/JSON)
+  # GET /locations (JSON response)
   def index
     if params[:lat] && params[:lng] && params[:uid] && params[:lat].length > 0 && params[:lng].length > 0 && params[:uid].length > 0
       @origin = [params[:lat], params[:lng]]
       @locations = Location.all.sort_by_distance_from(@origin).take(Setting.get_limit)
-      if Setting.get_encrypt && !params[:no_encrypt]
+      if Setting.get_encrypt
         encrypted_data = encrypt_with_device_id(@locations.as_json(:usercon => params).to_json, params[:uid])
         render json: { response: encrypted_data }
       else
@@ -16,6 +16,7 @@ class LocationsController < ApplicationController
     end
   end
   
+  # Encrypt with data and a device identifier
   def encrypt_with_device_id(data_to_encrypt, device_id)
     aes = OpenSSL::Cipher::AES256.new(:CBC)
     aes.encrypt
