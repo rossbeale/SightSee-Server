@@ -1,4 +1,6 @@
-&.logged_out {
+@import "../mixins";
+
+body.logged_out {
   background: #e8e9ea;
 
   #content_wrapper{

@@ -1,3 +1,5 @@
+@import "../mixins";
+
 .status_tag {
   background: darken($secondary-color, 15%);
   color: #fff;
