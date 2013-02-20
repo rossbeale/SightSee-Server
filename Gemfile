@@ -51,3 +51,5 @@ gem 'geokit'
 gem 'geokit-rails3'
 
 gem 'newrelic_rpm'
+
+gem 'aescrypt'
