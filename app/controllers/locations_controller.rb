@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  
+
   # GET /locations (JSON response)
   def index
     if params[:lat] && params[:lng] && params[:uid] && params[:lat].length > 0 && params[:lng].length > 0 && params[:uid].length > 0
@@ -15,7 +15,7 @@ class LocationsController < ApplicationController
       head :bad_request
     end
   end
-  
+
   # Encrypt with data and a device identifier
   def encrypt_with_device_id(data_to_encrypt, device_id)
     aes = OpenSSL::Cipher::AES256.new(:CBC)
@@ -26,5 +26,5 @@ class LocationsController < ApplicationController
     aes.iv = iv
     Base64.strict_encode64(iv + (aes.update(data_to_encrypt) + aes.final))
   end
-    
+  
 end
