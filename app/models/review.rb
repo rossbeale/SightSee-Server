@@ -49,7 +49,7 @@ class Review < ActiveRecord::Base
   def as_json(options={})
     super((options || { }).merge({
         :methods => [:response, :created_date],
-        :except => [:updated_at, :location_id]
+        :except => [:created_at, :updated_at, :location_id]
     }))
   end
   

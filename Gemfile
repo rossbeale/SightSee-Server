@@ -50,6 +50,6 @@ gem 'geokit'
 
 gem 'geokit-rails3'
 
-gem 'newrelic_rpm'
+gem "newrelic_rpm", "~> 3.6.0.78"
 
 gem 'aescrypt'

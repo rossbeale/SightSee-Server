@@ -2,7 +2,7 @@ class Location < ActiveRecord::Base
   validates_presence_of :name, :lat, :lng, :categories, :editor
   
   belongs_to :editor
-  has_many :reviews
+  has_many :reviews, :dependent => :delete_all
   has_and_belongs_to_many :categories
   
   acts_as_mappable  :default_units => :miles,

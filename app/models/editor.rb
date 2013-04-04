@@ -1,6 +1,6 @@
 class Editor < ActiveRecord::Base
   
-  has_many :locations
+  has_many :locations, :dependent => :delete_all
     
   # getter and setter for current editor member
   def self.current

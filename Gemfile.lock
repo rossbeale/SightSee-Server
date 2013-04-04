@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.12)
       actionpack (= 3.2.12)
@@ -98,7 +98,7 @@ GEM
       polyamorous (~> 0.5.0)
     mime-types (1.21)
     multi_json (1.6.1)
-    newrelic_rpm (3.5.0)
+    newrelic_rpm (3.6.0.78)
     orm_adapter (0.4.0)
     pg (0.13.2)
     polyamorous (0.5.0)
@@ -169,7 +169,7 @@ DEPENDENCIES
   geokit
   geokit-rails3
   jquery-rails
-  newrelic_rpm
+  newrelic_rpm (~> 3.6.0.78)
   pg
   postgres-pr
   rails (= 3.2.12)

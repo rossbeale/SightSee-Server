@@ -1,7 +1,7 @@
 class DeviseCreateEditors < ActiveRecord::Migration
   def migrate(direction)
     super
-    # Create a default user
+    # Create a default editor
     Editor.create!(:name => 'Ross Beale', :email => 'cp004138@reading.ac.uk', :password => 'password', :password_confirmation => 'password', :is_super => true) if direction == :up
   end
 
