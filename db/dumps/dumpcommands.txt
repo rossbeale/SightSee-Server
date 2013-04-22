@@ -1,7 +1,5 @@
-heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/tourism.dump'
+heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/tourism.dump' --confirm sightsee
 
-heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/dispatch.dump'
-
-heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/corporate.dump'
+heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/dispatch.dump' --confirm sightsee
 
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U rossbeale -d sightsee db/dumps/tourism.dump

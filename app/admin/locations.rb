@@ -26,12 +26,15 @@ ActiveAdmin.register Location do
   
   index do       
     selectable_column
-    column :name                     
-    column :description                     
+    column :name                            
     column :lat           
     column :lng  
     column "Categories" do |location|
-      ("<li>" + location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('</li><li>') + "</li>").html_safe
+      if location.categories.count > 0
+        ("<li>" + location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('</li><li>') + "</li>").html_safe
+      else
+        "None"
+      end
     end
     column "Average Review Score" do |location|
       location.review_score_string(true)
@@ -54,7 +57,11 @@ ActiveAdmin.register Location do
           image_tag("http://maps.google.com/maps/api/staticmap?markers=icon:http://i49.tinypic.com/4jkzmr.png%7Cshadow:false%7C" + location.lat.to_s + "," + location.lng.to_s + "&zoom=16&size=500x300&sensor=false")
         end
         row "Categories" do
-          ("<li>" + location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('</li><li>') + "</li>").html_safe
+          if location.categories.count > 0
+            ("<li>" + location.categories.map { |category| link_to category.name, edit_category_path(category) }.join('</li><li>') + "</li>").html_safe
+          else
+            "None"
+          end
         end
         row "Reviews" do |location|
           location.reviews.count
