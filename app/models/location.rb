@@ -26,7 +26,7 @@ class Location < ActiveRecord::Base
       review_score.to_s
     else
       if long
-        "Not Yet Reviewed"
+        "Not yet reviewed"
       else
         "N/A"
       end
@@ -59,7 +59,7 @@ class Location < ActiveRecord::Base
   # exception if we try to delete the last editor
   def check_location
     if lat > 90 || lat < -90 || lng > 180 || lng < -180
-      raise "Incorrect co-ordinates"
+      raise "Incorrect coordinates"
     end
   end
   
