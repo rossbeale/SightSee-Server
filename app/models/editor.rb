@@ -35,6 +35,19 @@ class Editor < ActiveRecord::Base
     end
   end
   
+  def my_reviews
+    if Editor.current.is_super
+      Review.unscoped
+    else
+      valid_locations = Location.where('editor_id = ?', Editor.current)
+      valid_location_ids = Array.new
+      valid_locations.each do |location|
+          valid_location_ids << location.id
+      end
+       Review.where('location_id' => valid_location_ids )
+    end
+  end
+  
   def self.editors
     if Editor.current.is_super
       

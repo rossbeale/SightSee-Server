@@ -1,5 +1,7 @@
 ActiveAdmin.register Review do
   
+  scope_to :current_editor, :association_method => :my_reviews
+  
   # order by name, forget about pagination
   config.sort_order = "created_at_desc"
   

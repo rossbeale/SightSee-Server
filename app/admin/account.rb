@@ -13,7 +13,6 @@ ActiveAdmin.register Editor, as: 'Account' do
       puts params[:id]
       puts current_editor.id
       if params[:id].to_i != current_editor.id.to_i
-        puts "REDIRECT"
         redirect_to_edit
       end
     end

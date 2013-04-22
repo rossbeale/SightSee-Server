@@ -1,0 +1,14 @@
+# Logfile created on 2013-04-04 14:09:28 +0100 by logger.rb/36483
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Reading configuration from 
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] ERROR : Unable to read configuration file : no implicit conversion of nil into String
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Starting the New Relic Agent.
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Environment: test
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Dispatcher: thin
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Application: test
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] WARN : No license key found in newrelic.yml config. This often means your newrelic.yml is missing a section for the running environment 'test'
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Installing ActiveRecord instrumentation
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Installing Net instrumentation
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Installing Rails 3 Controller instrumentation
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Installing Rails 3.1/3.2 view instrumentation
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Installing Rails3 Error instrumentation
+[04/04/13 14:09:28 +0100 Ross-MacBook-Pro.local (23728)] INFO : Finished instrumentation
