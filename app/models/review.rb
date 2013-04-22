@@ -4,7 +4,7 @@ class Review < ActiveRecord::Base
   attr_accessible :location_id, :reviewer_name, :review_comment, :review_score, :uid
   
   validates :location_id, :presence => true
-#  validates :uid, :presence => true
+  validates :uid, :presence => true
   
   def display_name
     "Review for \"" + location.name + "\""
