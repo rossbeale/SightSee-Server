@@ -13,7 +13,7 @@ ActiveAdmin.register Category do
     column :name
     if current_editor.is_super?
       column "Linked Locations" do |category|
-        category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('<br />').html_safe
+        ("<li>" + category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('</li><li>') + "</li>").html_safe
       end
     end
     default_actions 
@@ -27,7 +27,7 @@ ActiveAdmin.register Category do
       row :updated_at
       if current_editor.is_super?
         row "Linked Locations" do |category|
-          category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('<br />').html_safe
+          ("<li>" + category.locations.map { |location| link_to location.name, edit_location_path(location) }.join('</li><li>') + "</li>").html_safe
         end
       end
     end
