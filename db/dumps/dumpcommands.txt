@@ -3,3 +3,9 @@ heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/touris
 heroku pgbackups:restore DATABASE 'https://s3-eu-west-1.amazonaws.com/fyp/dispatch.dump' --confirm sightsee
 
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U rossbeale -d sightsee db/dumps/tourism.dump
+
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U rossbeale -d sightsee db/dumps/dispatch.dump
+
+OTHER COMMANDS
+
+rake assets:clean

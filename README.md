@@ -1,3 +1,5 @@
 **SightSee-Server**
 ================
-Ross Beale (cp004138@reading.ac.uk); Final Year Project
+Ross Beale (ross@rossbeale.com); Final Year Project for Computer Science BSc at University of Reading (2013).
+================
+To be used with clients, such as SightSee for iOS (https://github.com/rossbeale/SightSee-iOS).
